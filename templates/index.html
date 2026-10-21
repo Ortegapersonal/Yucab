@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Yucab Tours & Viajes: experiencias, tours y hospedaje en la costa de Yucatán.">
+  <meta name="theme-color" content="#1A365D">
+  <title>Yucab Tours & Viajes | Descubre la costa de Yucatán</title>
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='imagenes/logo.png') }}">
+  <link rel="apple-touch-icon" href="{{ url_for('static', filename='imagenes/logo.png') }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: '#1A365D', aqua: '#2B93A0', gold: '#C2A676', mist: '#F8FAFC',
+            ink: '#1A365D', lagoon: '#2B93A0', seafoam: '#E8F5F6', coral: '#2B93A0'
+          },
+          fontFamily: { sans: ['Poppins', 'sans-serif'], display: ['Poppins', 'sans-serif'] },
+          boxShadow: { soft: '0 20px 60px rgba(26,54,93,.10)' }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class="bg-white font-sans text-slate-700 antialiased">
+  <a href="#contenido" class="skip-link">Saltar al contenido</a>
+  <div class="hidden bg-[#122A49] py-2 text-center text-[11px] font-medium tracking-wide text-white/80 sm:block"><i class="fa-solid fa-location-dot mr-2 text-gold"></i>Experiencias creadas por expertos locales en la costa de Yucatán</div>
+
+  <nav id="navbar" class="sticky top-0 z-50 bg-navy text-white shadow-lg shadow-navy/10">
+    <div class="mx-auto flex h-[76px] max-w-7xl items-center justify-between px-5 lg:px-8">
+      <a href="#inicio" class="brand-lockup" aria-label="Yucab Tours & Viajes, inicio"><img src="{{ url_for('static', filename='imagenes/logo.png') }}" alt="Yucab Tours & Viajes" class="h-11 w-auto"></a>
+      <div class="hidden items-center gap-7 text-[13px] font-semibold lg:flex">
+        <a class="nav-link" href="#experiencias">Tours</a><a class="nav-link" href="#hoteles">Hoteles</a><a class="nav-link" href="#promociones">Promociones</a><a class="nav-link" href="#nosotros">Por qué Yucab</a>
+        <a href="#reserva" class="inline-flex items-center gap-2 rounded-xl bg-aqua px-5 py-3 shadow-lg shadow-black/10 transition hover:-translate-y-0.5 hover:bg-[#36a8b6]"><i class="fa-regular fa-calendar-check"></i> Cotiza tu viaje</a>
+      </div>
+      <button id="menu-button" class="grid h-11 w-11 place-items-center rounded-xl border border-white/15 bg-white/10 lg:hidden" aria-label="Abrir menú" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+    </div>
+    <div id="mobile-menu" class="hidden border-t border-white/10 bg-navy px-5 pb-6 lg:hidden">
+      <div class="flex flex-col gap-1 pt-3 text-sm font-semibold"><a class="mobile-nav-link" href="#experiencias">Tours</a><a class="mobile-nav-link" href="#hoteles">Hoteles</a><a class="mobile-nav-link" href="#promociones">Promociones</a><a class="mobile-nav-link" href="#nosotros">Por qué Yucab</a><a href="#reserva" class="mt-3 rounded-xl bg-aqua px-4 py-3 text-center">Cotiza tu viaje</a></div>
+    </div>
+  </nav>
+
+  <main id="contenido">
+    <header id="inicio" class="hero-bg relative isolate flex min-h-[700px] items-center overflow-hidden text-white lg:min-h-[calc(100vh-108px)]">
+      <div class="absolute inset-0 -z-10 bg-gradient-to-r from-[#102d50]/95 via-[#163b61]/75 to-[#153655]/25"></div>
+      <div class="absolute inset-0 -z-10 bg-gradient-to-t from-[#102d50]/55 via-transparent to-transparent"></div>
+      <div class="absolute -right-20 top-16 -z-10 h-80 w-80 rounded-full border border-white/15"></div>
+      <div class="absolute -right-8 top-28 -z-10 h-60 w-60 rounded-full border border-white/10"></div>
+      <div class="mx-auto w-full max-w-7xl px-5 py-24 lg:px-8">
+        <div class="max-w-3xl">
+          <span class="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-2 text-xs font-semibold backdrop-blur"><span class="h-2 w-2 rounded-full bg-gold"></span> Tu próxima historia comienza junto al mar</span>
+          <h1 class="mt-7 max-w-3xl text-4xl font-extrabold leading-[1.12] tracking-[-0.035em] sm:text-6xl lg:text-[4.6rem]">Descubre la magia de la <span class="text-[#6fd0d6]">costa yucateca</span> con Yucab</h1>
+          <p class="mt-6 max-w-2xl text-base leading-8 text-white/80 sm:text-lg">Tours auténticos, paisajes extraordinarios y hospedajes seleccionados para vivir Yucatán con la tranquilidad de estar en manos expertas.</p>
+          <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+            <a href="#experiencias" class="inline-flex items-center justify-center gap-3 rounded-xl bg-aqua px-6 py-4 text-sm font-bold shadow-xl shadow-[#0b233f]/25 transition hover:-translate-y-1 hover:bg-[#36a8b6]">Explorar experiencias <i class="fa-solid fa-arrow-right"></i></a>
+            <a href="#reserva" class="inline-flex items-center justify-center gap-3 rounded-xl border border-white/35 bg-white/10 px-6 py-4 text-sm font-bold backdrop-blur transition hover:bg-white hover:text-navy"><i class="fa-brands fa-whatsapp"></i> Hablar con un asesor</a>
+          </div>
+        </div>
+        <form id="search-form" class="mt-12 grid max-w-4xl gap-3 rounded-2xl border border-white/25 bg-white p-3 text-navy shadow-2xl shadow-[#071b30]/25 sm:grid-cols-[1fr_auto]" role="search">
+          <label class="flex min-w-0 items-center gap-3 px-3"><span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-[#E8F5F6] text-aqua"><i class="fa-solid fa-magnifying-glass"></i></span><span class="min-w-0 flex-1"><span class="block text-[10px] font-bold uppercase tracking-wider text-slate-400">Encuentra tu experiencia</span><input id="search-input" class="w-full bg-transparent py-1 text-sm font-medium outline-none placeholder:text-slate-400" type="search" placeholder="Isla Columpios, Chuburná, kayak..."></span></label>
+          <button class="rounded-xl bg-navy px-7 py-4 text-sm font-bold text-white transition hover:bg-aqua" type="submit">Buscar ahora</button>
+        </form>
+        <p id="search-message" class="mt-3 hidden max-w-4xl rounded-lg bg-white/10 px-4 py-2 text-sm backdrop-blur"></p>
+      </div>
+    </header>
+
+    <section class="relative z-10 border-b border-slate-100 bg-white">
+      <div class="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-slate-100 px-5 py-7 md:grid-cols-4 lg:px-8">
+        <div class="trust-item"><i class="fa-solid fa-shield-heart"></i><div><strong>Reserva segura</strong><span>Atención confiable</span></div></div>
+        <div class="trust-item"><i class="fa-solid fa-map-location-dot"></i><div><strong>Expertos locales</strong><span>Conocemos cada ruta</span></div></div>
+        <div class="trust-item"><i class="fa-solid fa-headset"></i><div><strong>Acompañamiento</strong><span>Antes y durante tu viaje</span></div></div>
+        <div class="trust-item"><i class="fa-solid fa-star"></i><div><strong>Experiencias únicas</strong><span>Momentos memorables</span></div></div>
+      </div>
+    </section>
+
+    <section id="experiencias" class="bg-white py-24 sm:py-28">
+      <div class="mx-auto max-w-7xl px-5 lg:px-8">
+        <div class="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+          <div class="max-w-2xl"><p class="eyebrow"><span></span> Tours favoritos</p><h2 class="section-title">La costa que siempre imaginaste</h2><p class="section-copy">Descubre rincones extraordinarios en experiencias diseñadas con cuidado, seguridad y esencia local.</p></div>
+          <a href="#reserva" class="section-link">Diseña un viaje a tu medida <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div id="tours-grid" class="grid gap-7 md:grid-cols-2 lg:grid-cols-3" aria-live="polite"><div class="skeleton h-[500px] rounded-3xl"></div><div class="skeleton h-[500px] rounded-3xl"></div><div class="skeleton h-[500px] rounded-3xl"></div></div>
+      </div>
+    </section>
+
+    <section id="nosotros" class="overflow-hidden bg-mist py-24 sm:py-28">
+      <div class="mx-auto grid max-w-7xl items-center gap-14 px-5 lg:grid-cols-2 lg:px-8">
+        <div class="relative order-2 lg:order-1"><div class="image-frame"><img src="https://images.unsplash.com/photo-1530789253388-582c481c54b0?auto=format&fit=crop&w=1400&q=85" alt="Experiencia acuática en la costa" loading="lazy"></div><div class="absolute -bottom-6 right-3 rounded-2xl bg-navy px-6 py-5 text-white shadow-2xl sm:right-8"><strong class="block text-3xl">100%</strong><span class="text-xs font-medium text-white/70">Experiencias locales</span></div><div class="absolute -left-4 -top-4 -z-10 h-32 w-32 rounded-3xl border-2 border-gold/60"></div></div>
+        <div class="order-1 lg:order-2 lg:pl-8">
+          <p class="eyebrow"><span></span> Viaja con propósito</p><h2 class="section-title">Conocemos Yucatán.<br>Queremos compartirlo.</h2><p class="section-copy">Creamos recorridos cercanos y memorables junto a anfitriones de la región. Cada detalle está pensado para que disfrutes más y te preocupes menos.</p>
+          <div class="mt-9 space-y-6"><div class="value-row"><i class="fa-solid fa-users"></i><div><h3>Grupos pequeños, grandes historias</h3><p>Atención cercana y tiempo para disfrutar cada parada.</p></div></div><div class="value-row"><i class="fa-solid fa-leaf"></i><div><h3>Turismo consciente</h3><p>Experiencias que respetan la naturaleza y apoyan lo local.</p></div></div><div class="value-row"><i class="fa-solid fa-compass"></i><div><h3>Rutas con criterio</h3><p>Selección experta de lugares, horarios y proveedores.</p></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="hoteles" class="bg-white py-24 sm:py-28">
+      <div class="mx-auto max-w-7xl px-5 lg:px-8">
+        <div class="mx-auto mb-12 max-w-2xl text-center"><p class="eyebrow justify-center"><span></span> Hospedaje seleccionado <span></span></p><h2 class="section-title">Descansa cerca de lo extraordinario</h2><p class="section-copy mx-auto">Hoteles con identidad, servicio atento y una ubicación ideal para seguir descubriendo la costa.</p></div>
+        <div id="hotels-grid" class="grid gap-7 md:grid-cols-2 lg:grid-cols-3" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section id="promociones" class="relative overflow-hidden bg-navy py-24 text-white sm:py-28">
+      <div class="absolute -right-32 -top-32 h-96 w-96 rounded-full border-[80px] border-white/[.035]"></div><div class="absolute -bottom-24 left-1/4 h-72 w-72 rounded-full border border-aqua/20"></div>
+      <div class="relative mx-auto max-w-7xl px-5 lg:px-8">
+        <div class="mb-12 flex flex-col justify-between gap-6 sm:flex-row sm:items-end"><div class="max-w-2xl"><p class="eyebrow !text-[#71cbd2]"><span class="!bg-gold"></span> Beneficios exclusivos</p><h2 class="section-title !text-white">Más viaje por menos</h2><p class="mt-4 text-sm leading-7 text-white/65 sm:text-base">Aprovecha nuestras tarifas y paquetes por tiempo limitado.</p></div><span class="hidden rounded-full border border-white/15 px-4 py-2 text-xs font-semibold text-white/65 sm:inline-flex"><i class="fa-solid fa-bolt mr-2 text-gold"></i> Ofertas vigentes</span></div>
+        <div id="promotions-grid" class="grid gap-5 md:grid-cols-3" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section id="reserva" class="bg-mist py-24 sm:py-28">
+      <div class="mx-auto grid max-w-7xl overflow-hidden rounded-[2rem] bg-white shadow-soft lg:grid-cols-[.85fr_1.15fr]">
+        <div class="relative overflow-hidden bg-navy p-8 text-white sm:p-12"><div class="absolute -bottom-28 -right-24 h-80 w-80 rounded-full border-[60px] border-white/[.04]"></div><div class="relative"><p class="eyebrow !text-[#71cbd2]"><span class="!bg-gold"></span> Comienza aquí</p><h2 class="text-3xl font-bold leading-tight sm:text-4xl">Tu próxima aventura está a un mensaje de distancia.</h2><p class="mt-5 text-sm leading-7 text-white/65">Cuéntanos qué tienes en mente. Nuestro equipo te ayudará a crear la opción perfecta, sin compromiso.</p><div class="mt-10 space-y-5"><div class="contact-benefit"><i class="fa-brands fa-whatsapp"></i><div><strong>Atención personalizada</strong><span>Habla con un asesor local</span></div></div><div class="contact-benefit"><i class="fa-regular fa-clock"></i><div><strong>Respuesta rápida</strong><span>En menos de 24 horas</span></div></div><div class="contact-benefit"><i class="fa-solid fa-lock"></i><div><strong>Tu información segura</strong><span>Sin spam ni compromisos</span></div></div></div></div></div>
+        <form id="reservation-form" class="p-7 sm:p-12" novalidate>
+          <div class="mb-8"><p class="text-xs font-bold uppercase tracking-[.16em] text-aqua">Solicitud de viaje</p><h3 class="mt-2 text-2xl font-bold text-navy">Cuéntanos sobre tu plan</h3></div>
+          <div class="grid gap-5 sm:grid-cols-2"><label class="form-field"><span>Nombre completo</span><input name="customer_name" required placeholder="Ej. María López"></label><label class="form-field"><span>WhatsApp o correo</span><input name="contact" required placeholder="Tu medio de contacto"></label><label class="form-field sm:col-span-2"><span>¿Qué te interesa?</span><select id="reservation-selection" name="selection" required><option value="">Selecciona una opción</option></select></label><label class="form-field"><span>Fecha deseada</span><input id="travel-date" name="travel_date" type="date" required></label><label class="form-field"><span>Número de viajeros</span><input name="guests" type="number" min="1" max="30" value="2" required></label><label class="form-field sm:col-span-2"><span>Comentarios adicionales <small>(opcional)</small></span><textarea name="notes" rows="3" placeholder="Preferencias, edades, celebración especial..."></textarea></label></div>
+          <button id="reservation-submit" class="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-aqua px-6 py-4 text-sm font-bold text-white shadow-lg shadow-aqua/20 transition hover:-translate-y-0.5 hover:bg-[#247f8b]" type="submit">Solicitar cotización <i class="fa-solid fa-arrow-right"></i></button><p class="mt-4 text-center text-[11px] text-slate-400"><i class="fa-solid fa-shield-halved mr-1"></i> Tus datos se usan únicamente para dar seguimiento a tu solicitud.</p><p id="form-message" class="mt-4 hidden rounded-xl p-3 text-sm font-semibold" role="status"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-navy text-white">
+    <div class="mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:grid-cols-2 lg:grid-cols-[1.35fr_.8fr_.8fr_1fr] lg:px-8">
+      <div><a href="#inicio" class="brand-lockup inline-flex"><img src="{{ url_for('static', filename='imagenes/logo.png') }}" alt="Yucab Tours & Viajes" class="h-12 w-auto"></a><p class="mt-5 max-w-sm text-sm leading-7 text-white/60">Creamos viajes memorables para descubrir la belleza, la cultura y los sabores de la costa yucateca.</p><div class="mt-6 flex gap-3"><a class="social-link" href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a><a class="social-link" href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a><a class="social-link" href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a></div></div>
+      <div><h3 class="footer-title">Explora</h3><div class="footer-links"><a href="#experiencias">Tours</a><a href="#hoteles">Hoteles</a><a href="#promociones">Promociones</a><a href="#nosotros">Nosotros</a></div></div>
+      <div><h3 class="footer-title">Ayuda</h3><div class="footer-links"><a href="#reserva">Cotizar viaje</a><a href="#">Preguntas frecuentes</a><a href="#">Políticas de reserva</a><a href="{{ url_for('admin') }}">Acceso administrativo</a></div></div>
+      <div><h3 class="footer-title">Contacto</h3><div class="space-y-4 text-sm text-white/60"><p class="flex gap-3"><i class="fa-solid fa-location-dot mt-1 text-gold"></i><span>Costa de Yucatán,<br>México</span></p><p class="flex gap-3"><i class="fa-brands fa-whatsapp mt-1 text-gold"></i><span>Atención vía WhatsApp</span></p><p class="flex gap-3"><i class="fa-regular fa-envelope mt-1 text-gold"></i><span>hola@yucab.mx</span></p></div></div>
+    </div>
+    <div class="border-t border-white/10"><div class="mx-auto flex max-w-7xl flex-col justify-between gap-3 px-5 py-6 text-[11px] text-white/45 sm:flex-row lg:px-8"><p>© 2026 Yucab Tours & Viajes. Todos los derechos reservados.</p><p>Hecho con orgullo en Yucatán, México.</p></div></div>
+  </footer>
+
+  <a href="#reserva" class="fixed bottom-5 right-5 z-40 grid h-14 w-14 place-items-center rounded-full bg-aqua text-xl text-white shadow-xl shadow-navy/20 transition hover:-translate-y-1 lg:hidden" aria-label="Cotizar por WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+  <div id="toast" class="fixed bottom-5 right-5 z-[70] hidden max-w-sm rounded-xl bg-navy px-5 py-4 text-sm font-semibold text-white shadow-2xl"></div>
+  <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+</body>
+</html>

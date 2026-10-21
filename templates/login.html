@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acceso | Yucab Admin</title>
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='imagenes/logo.png') }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={theme:{extend:{colors:{ink:'#1A365D',lagoon:'#2B93A0',coral:'#C2A676'},fontFamily:{sans:['Poppins'],display:['Poppins']}}}}</script>
+</head>
+<body class="min-h-screen bg-[#eef5f1] font-sans text-ink">
+  <main class="grid min-h-screen lg:grid-cols-2">
+    <section class="relative hidden overflow-hidden lg:block">
+      <img class="absolute inset-0 h-full w-full object-cover" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=90" alt="Costa de Yucatán">
+      <div class="absolute inset-0 bg-gradient-to-t from-ink/95 via-ink/30 to-transparent"></div>
+      <div class="absolute bottom-14 left-14 max-w-md text-white"><span class="inline-flex rounded-xl bg-white p-2 shadow-xl"><img src="{{ url_for('static', filename='imagenes/logo.png') }}" alt="Yucab Tours & Viajes" class="h-16 w-auto"></span><p class="mt-6 text-xl font-semibold leading-relaxed text-white/85">Gestiona experiencias memorables desde un solo lugar.</p></div>
+    </section>
+    <section class="flex items-center justify-center px-5 py-14">
+      <div class="w-full max-w-md">
+        <a href="{{ url_for('index') }}" class="mb-12 inline-flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-lagoon"><i class="fa-solid fa-arrow-left"></i> Volver al sitio</a>
+        <p class="text-xs font-bold uppercase tracking-[0.25em] text-lagoon">Panel de control</p>
+        <h1 class="mt-3 text-4xl font-bold tracking-tight">Bienvenido</h1>
+        <p class="mt-3 text-slate-500">Ingresa tus credenciales para continuar.</p>
+        {% if error %}<div class="mt-6 rounded-xl border border-red-200 bg-red-50 p-4 text-sm font-semibold text-red-700">{{ error }}</div>{% endif %}
+        <form method="post" class="mt-8 space-y-5">
+          <label class="block"><span class="mb-2 block text-sm font-semibold">Usuario</span><input name="username" autocomplete="username" required class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3.5 outline-none transition focus:border-lagoon focus:ring-4 focus:ring-lagoon/10" placeholder="admin"></label>
+          <label class="block"><span class="mb-2 block text-sm font-semibold">Contraseña</span><div class="relative"><input id="password" name="password" type="password" autocomplete="current-password" required class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3.5 pr-12 outline-none transition focus:border-lagoon focus:ring-4 focus:ring-lagoon/10" placeholder="••••••••"><button id="toggle-password" type="button" class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400" aria-label="Mostrar contraseña"><i class="fa-regular fa-eye"></i></button></div></label>
+          <button class="w-full rounded-xl bg-ink px-5 py-4 font-bold text-white transition hover:bg-lagoon" type="submit">Entrar al dashboard</button>
+        </form>
+      </div>
+    </section>
+  </main>
+  <script>document.getElementById('toggle-password').addEventListener('click',()=>{const input=document.getElementById('password');input.type=input.type==='password'?'text':'password'});</script>
+</body>
+</html>
+

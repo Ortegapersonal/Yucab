@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | Yucab</title>
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='imagenes/logo.png') }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={theme:{extend:{colors:{ink:'#1A365D',lagoon:'#2B93A0',seafoam:'#E8F5F6',coral:'#C2A676'},fontFamily:{sans:['Poppins'],display:['Poppins']}}}}</script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class="bg-[#f4f6f3] font-sans text-ink">
+  <div class="min-h-screen lg:grid lg:grid-cols-[260px_1fr]">
+    <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 hidden w-[260px] flex-col bg-ink p-5 text-white lg:flex">
+      <a href="{{ url_for('index') }}" class="inline-flex rounded-xl bg-white p-1.5 shadow-lg"><img src="{{ url_for('static', filename='imagenes/logo.png') }}" alt="Yucab Tours & Viajes" class="h-12 w-auto"></a>
+      <p class="mt-8 px-3 text-[10px] font-bold uppercase tracking-[0.22em] text-white/35">Administración</p>
+      <nav class="mt-3 space-y-1" id="admin-nav">
+        <button data-view="overview" class="admin-nav active"><i class="fa-solid fa-chart-pie"></i> Resumen</button>
+        <button data-view="tours" class="admin-nav"><i class="fa-solid fa-sailboat"></i> Tours</button>
+        <button data-view="hotels" class="admin-nav"><i class="fa-solid fa-hotel"></i> Hoteles</button>
+        <button data-view="promotions" class="admin-nav"><i class="fa-solid fa-tags"></i> Promociones</button>
+        <button data-view="reservations" class="admin-nav"><i class="fa-solid fa-calendar-check"></i> Reservas <span id="lead-badge" class="ml-auto rounded-full bg-coral px-2 py-0.5 text-[10px]">0</span></button>
+      </nav>
+      <div class="mt-auto border-t border-white/10 pt-5">
+        <a href="{{ url_for('index') }}" class="admin-nav"><i class="fa-solid fa-arrow-up-right-from-square"></i> Ver sitio</a>
+        <form method="post" action="{{ url_for('logout') }}"><button class="admin-nav w-full"><i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión</button></form>
+      </div>
+    </aside>
+
+    <div class="lg:col-start-2">
+      <header class="sticky top-0 z-30 flex h-20 items-center justify-between border-b border-slate-200 bg-white/90 px-5 backdrop-blur lg:px-9">
+        <div class="flex items-center gap-3"><button id="sidebar-button" class="grid h-10 w-10 place-items-center rounded-xl border border-slate-200 lg:hidden"><i class="fa-solid fa-bars"></i></button><div><p class="text-xs text-slate-400">Panel de control</p><h1 id="view-title" class="text-lg font-bold">Resumen</h1></div></div>
+        <div class="flex items-center gap-3"><div class="hidden text-right sm:block"><p class="text-sm font-bold">Administrador</p><p class="text-xs text-slate-400">Yucab Travel</p></div><span class="grid h-10 w-10 place-items-center rounded-full bg-seafoam font-bold text-lagoon">YA</span></div>
+      </header>
+
+      <main class="p-5 lg:p-9">
+        <section id="view-overview" class="admin-view">
+          <div class="mb-8"><p class="text-sm text-slate-500">Todo listo para crear grandes viajes.</p><h2 class="mt-1 text-3xl font-bold tracking-tight">Así va Yucab hoy</h2></div>
+          <div id="stats-grid" class="grid gap-5 sm:grid-cols-2 xl:grid-cols-4"></div>
+          <div class="mt-8 grid gap-6 xl:grid-cols-[1.3fr_.7fr]">
+            <div class="admin-card"><div class="mb-5 flex items-center justify-between"><h3 class="font-bold">Solicitudes recientes</h3><button data-view="reservations" class="nav-shortcut text-sm font-bold text-lagoon">Ver todas</button></div><div id="recent-reservations"></div></div>
+            <div class="admin-card overflow-hidden !bg-ink text-white"><p class="text-xs font-bold uppercase tracking-[0.2em] text-[#91cdbb]">Acceso rápido</p><h3 class="mt-3 font-display text-3xl">Amplía tu catálogo</h3><p class="mt-3 text-sm leading-6 text-white/60">Agrega una experiencia memorable para tus viajeros.</p><button data-view="tours" data-create="true" class="nav-shortcut mt-8 rounded-xl bg-coral px-5 py-3 text-sm font-bold">Crear un tour</button></div>
+          </div>
+        </section>
+
+        <section id="view-tours" class="admin-view hidden">
+          <div class="view-heading"><div><p class="text-sm text-slate-500">Experiencias disponibles</p><h2 class="font-display text-4xl">Tours</h2></div><button data-create-type="tours" class="create-button"><i class="fa-solid fa-plus"></i> Nuevo tour</button></div>
+          <div class="admin-card table-wrap"><table><thead><tr><th>Experiencia</th><th>Ubicación</th><th>Precio</th><th>Duración</th><th></th></tr></thead><tbody id="tours-table"></tbody></table></div>
+        </section>
+
+        <section id="view-hotels" class="admin-view hidden">
+          <div class="view-heading"><div><p class="text-sm text-slate-500">Alojamientos aliados</p><h2 class="font-display text-4xl">Hoteles</h2></div><button data-create-type="hotels" class="create-button"><i class="fa-solid fa-plus"></i> Nuevo hotel</button></div>
+          <div class="admin-card table-wrap"><table><thead><tr><th>Hotel</th><th>Destino</th><th>Precio/noche</th><th>Amenidades</th><th></th></tr></thead><tbody id="hotels-table"></tbody></table></div>
+        </section>
+
+        <section id="view-promotions" class="admin-view hidden">
+          <div class="view-heading"><div><p class="text-sm text-slate-500">Campañas y descuentos</p><h2 class="font-display text-4xl">Promociones</h2></div><button data-create-type="promotions" class="create-button"><i class="fa-solid fa-plus"></i> Nueva promoción</button></div>
+          <div class="admin-card table-wrap"><table><thead><tr><th>Promoción</th><th>Descuento</th><th>Vigencia</th><th>Descripción</th><th></th></tr></thead><tbody id="promotions-table"></tbody></table></div>
+        </section>
+
+        <section id="view-reservations" class="admin-view hidden">
+          <div class="view-heading"><div><p class="text-sm text-slate-500">Solicitudes de viajeros</p><h2 class="font-display text-4xl">Reservas y leads</h2></div></div>
+          <div class="admin-card table-wrap"><table><thead><tr><th>Cliente</th><th>Experiencia</th><th>Fecha</th><th>Personas</th><th>Estado</th><th></th></tr></thead><tbody id="reservations-table"></tbody></table></div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <div id="modal" class="fixed inset-0 z-[70] hidden items-center justify-center bg-ink/60 p-4 backdrop-blur-sm">
+    <div class="max-h-[92vh] w-full max-w-2xl overflow-y-auto rounded-3xl bg-white shadow-2xl">
+      <div class="sticky top-0 z-10 flex items-center justify-between border-b border-slate-100 bg-white px-6 py-5"><div><p id="modal-kicker" class="text-xs font-bold uppercase tracking-wider text-lagoon">Catálogo</p><h3 id="modal-title" class="font-display text-3xl">Nuevo elemento</h3></div><button id="modal-close" class="grid h-10 w-10 place-items-center rounded-full bg-slate-100" aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button></div>
+      <form id="entity-form" class="p-6"><div id="modal-fields" class="grid gap-5 sm:grid-cols-2"></div><div class="mt-7 flex justify-end gap-3"><button type="button" id="modal-cancel" class="rounded-xl px-5 py-3 font-bold text-slate-500">Cancelar</button><button type="submit" class="rounded-xl bg-ink px-6 py-3 font-bold text-white hover:bg-lagoon">Guardar cambios</button></div></form>
+    </div>
+  </div>
+  <div id="admin-toast" class="fixed bottom-5 right-5 z-[90] hidden max-w-sm rounded-2xl bg-ink px-5 py-4 text-sm font-semibold text-white shadow-2xl"></div>
+  <script src="{{ url_for('static', filename='js/admin.js') }}" defer></script>
+</body>
+</html>
